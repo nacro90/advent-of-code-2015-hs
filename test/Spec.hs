@@ -61,4 +61,22 @@ main =
             sumRibbon "2x3x4" `shouldBe` 34
           it "1x1x10" $ do
             sumRibbon "1x1x10" `shouldBe` 14
+      describe "Day 3 - Perfectly Spherical Houses in a Vacuum - Part 1" $ do
+        describe "Commit movement" $ do
+          it "Move to North" $ do
+            move (0, 7) '^' `shouldBe` (0, 8)
+          it "Move to South" $ do
+            move (2, 5) 'v' `shouldBe` (2, 4)
+          it "Move to East" $ do
+            move (2, 2) '>' `shouldBe` (3, 2)
+          it "Move to South" $ do
+            move (2, 5) '<' `shouldBe` (1, 5)
+        describe "Coordinate set" $ do
+          it ">" $ do
+            uniqueCoordinates ">" `shouldBe` 2
+          it "^>v<" $ do
+            uniqueCoordinates "^>v<" `shouldBe` 4
+          it "^v^v^v^v^v" $ do
+            uniqueCoordinates "^v^v^v^v^v" `shouldBe` 2
+
 

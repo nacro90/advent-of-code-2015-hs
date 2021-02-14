@@ -3,6 +3,7 @@ module AdventFiveSolutions where
 import Data.List
 import Data.List.Split
 import Data.Maybe
+import qualified Data.Set as Set
 
 parseInt :: String -> Int
 parseInt str = read str :: Int
@@ -53,3 +54,16 @@ ribbon (Dimensions len wid he) = smallestPerimeter + len * wid * he
 
 sumRibbon :: String -> Int
 sumRibbon dimsText = sum $ ribbon . parseDimLine <$> splitOn "\n" dimsText
+
+-- Day 3
+move :: (Int, Int) -> Char -> (Int, Int)
+move (x, y) '^' = (x, y + 1)
+move (x, y) 'v' = (x, y - 1)
+move (x, y) '>' = (x + 1, y)
+move (x, y) '<' = (x - 1, y)
+
+uniqueCoordinates :: String -> Int
+uniqueCoordinates str = length stepSet
+  where
+    stepSet = Set.fromList coordinateSteps
+    coordinateSteps = scanl move (0, 0) str
