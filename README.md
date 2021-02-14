@@ -7,3 +7,5 @@ Code examples can be tested using `stack test`.
 
 The final inputs executed via *ghci*. You can read the inputs from the file or
 paste stdin as an argument.
+
+See: https://adventofcode.com/2015
