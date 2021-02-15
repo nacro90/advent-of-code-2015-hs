@@ -8,6 +8,9 @@ import qualified Data.Set as Set
 parseInt :: String -> Int
 parseInt str = read str :: Int
 
+stepEvery :: Int -> [a] -> [a]
+stepEvery every list = map head $ chunksOf every list
+
 -- Day 1
 numerateParen :: Char -> Int
 numerateParen '(' = 1
@@ -67,3 +70,11 @@ uniqueCoordinates str = length stepSet
   where
     stepSet = Set.fromList coordinateSteps
     coordinateSteps = scanl move (0, 0) str
+
+alternatingUniqueCoordinates :: String -> Int
+alternatingUniqueCoordinates str = length stepSet
+  where
+    stepSet = Set.fromList $ santaCoordinateSteps ++ robotCoordinateSteps
+    scanMove = scanl move (0, 0)
+    santaCoordinateSteps = scanMove $ stepEvery 2 str
+    robotCoordinateSteps = scanMove $ stepEvery 2 $ tail str

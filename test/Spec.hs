@@ -6,6 +6,12 @@ main :: IO ()
 main =
   hspec $ do
     describe "Advent of Code 2015" $ do
+      describe "Utils" $ do
+        describe "Stepped list" $ do
+          it "step every two" $ do
+            stepEvery 2 [1..9] `shouldBe` [1, 3 .. 9]
+          it "step every four" $ do
+            stepEvery 4 [0..8] `shouldBe` [0, 4, 8]
       describe "Day 1 - Not Quite Lisp - Part 1" $ do
         describe "Paren examples" $ do
           it "(())" $ do
@@ -78,5 +84,12 @@ main =
             uniqueCoordinates "^>v<" `shouldBe` 4
           it "^v^v^v^v^v" $ do
             uniqueCoordinates "^v^v^v^v^v" `shouldBe` 2
+        describe "Alternating coordinate set" $ do
+          it "^v" $ do
+            alternatingUniqueCoordinates "^v" `shouldBe` 3
+          it "^>v<" $ do
+            alternatingUniqueCoordinates "^>v<" `shouldBe` 3
+          it "^v^v^v^v^v" $ do
+            alternatingUniqueCoordinates "^v^v^v^v^v" `shouldBe` 11
 
 
