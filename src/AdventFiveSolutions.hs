@@ -47,7 +47,7 @@ parseDimLine line = Dimensions (head elems) (elems !! 1) (elems !! 2)
 
 sumPaperSurface :: String -> Int
 sumPaperSurface dimsText =
-  sum $ paperSurfaceDim . parseDimLine <$> splitOn "\n" dimsText
+  sum $ paperSurfaceDim . parseDimLine <$> lines dimsText
 
 ribbon :: Dimensions -> Int
 ribbon (Dimensions len wid he) = smallestPerimeter + len * wid * he
@@ -56,7 +56,7 @@ ribbon (Dimensions len wid he) = smallestPerimeter + len * wid * he
     max_dim = max len $ max wid he
 
 sumRibbon :: String -> Int
-sumRibbon dimsText = sum $ ribbon . parseDimLine <$> splitOn "\n" dimsText
+sumRibbon dimsText = sum $ ribbon . parseDimLine <$> lines dimsText
 
 -- Day 3
 move :: (Int, Int) -> Char -> (Int, Int)
